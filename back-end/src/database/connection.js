@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
 
-try {
-    mongoose.connect('mongodb+srv://john_doe:00000@cluster0.1heam.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://john_doe:00000@cluster0.1heam.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: true
-    });
-} catch (error) {
-    return error;
-}
-
+        useFindAndModify: false
+    }).catch(error => {
+    return 'Database connection failed.';
+});
 
 module.exports = mongoose;
+
+
