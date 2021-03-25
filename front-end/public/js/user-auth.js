@@ -3,6 +3,7 @@ $(function () {
     const authModals = document.querySelectorAll('.auth .modal');
     const authWrapper = document.querySelector('.auth');
     const apiBaseUrl = 'http://localhost:8000/';
+    const errorDiv = $('.error');
 
     // toggle auth modals
     authSwitchLinks.forEach(link => {
@@ -26,6 +27,14 @@ $(function () {
             dataType: "json",
             success: function (response) {
                 console.log('success: ', response);
+
+                if(response.Error)
+                {
+                    errorDiv.addClass('show');
+                    errorDiv.text(response.Error);
+                }else {
+                    errorDiv.removeClass('show');
+                }
             },
             error: function (response) { console.log('error: ', response); }
         });
