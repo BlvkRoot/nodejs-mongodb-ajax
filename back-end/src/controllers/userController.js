@@ -15,7 +15,7 @@ router.post("/create", async (req, res) => {
 
     const user = await User.create(req.body);
 
-    return res.send({ Success: 'Registration Successful.' });
+    return res.send({ Success: "Registration Successful." });
   } catch (error) {
     return res.send({ Error: "User not registered, please try again" });
   }
@@ -23,12 +23,13 @@ router.post("/create", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log("====================================");
-  console.log(req.body);
-  console.log("====================================");
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select('+password');
+
+    console.log("====================================");
+    console.log(user);
+    console.log("====================================");
 
     if (user) {
       if (user.password === password) {
@@ -42,7 +43,6 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     return res.send({ Error: "Login failed. Please try again" });
   }
-
 });
 
 router.get("/show", async (req, res) => {

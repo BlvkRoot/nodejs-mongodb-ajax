@@ -2,10 +2,12 @@ $(function () {
     const authSwitchLinks = document.querySelectorAll('.switch');
     const authModals = document.querySelectorAll('.auth .modal');
     const authWrapper = document.querySelector('.auth');
+    const signOut = document.querySelector('.sign-out');
     const apiBaseUrl = 'http://localhost:8000/';
     const errorDiv = $('.error');
     const registerForm = $('form#register');
     const loginForm = $('form#login');
+    let userLogged = localStorage.getItem('isLoggedIn');
 
 
     // toggle auth modals
@@ -44,6 +46,7 @@ $(function () {
                         hideErrorDiv();
 
                     }else {
+                        localStorage.setItem('isLoggedIn', true);
                         errorDiv.removeClass('show'); 
                     }
                 },
@@ -83,8 +86,12 @@ $(function () {
                         hideErrorDiv();
                         
                     }else {
+                        localStorage.setItem('isLoggedIn', true);
                         errorDiv.removeClass('show'); 
                     }
+
+                    isAuthenticated();
+
                 },
                 error: function (response) { console.log('error: ', response); }
             });
@@ -109,5 +116,18 @@ $(function () {
     register();
     login();
 
+    console.log('User Logged In: ', userLogged);
+
+    const isAuthenticated = () => {
+        if(userLogged){
+            authWrapper.classList.remove('open');
+            authModals.forEach(modal => modal.classList.remove('active'));
+        }else {
+            authWrapper.classList.add('open');
+            authModals[0].classList.add('active');
+        }
+    }
+
+    isAuthenticated();
 
 });
