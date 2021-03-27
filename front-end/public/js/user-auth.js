@@ -3,7 +3,8 @@ $(function () {
     const authModals = document.querySelectorAll('.auth .modal');
     const authWrapper = document.querySelector('.auth');
     const signOut = document.querySelector('.sign-out');
-    const apiBaseUrl = 'http://localhost:8000/';
+    const PORT = 4000 || 8000;
+    const apiBaseUrl = `http://localhost:${PORT}/`;
     const errorDiv = $('.error');
     const registerForm = $('form#register');
     const loginForm = $('form#login');

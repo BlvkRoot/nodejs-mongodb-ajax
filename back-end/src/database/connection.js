@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://john_doe:00000@cluster0.1heam.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGODB_URI, { 
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
