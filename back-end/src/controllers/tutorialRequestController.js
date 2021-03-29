@@ -4,14 +4,17 @@ const TutorialRequest = require('../models/tutorialRequest');
 const router = express.Router();
 
 router.post('/create', async (req, res) => {
+
+    console.log(req.body);
+
     try {
         const tutorialRequests = await TutorialRequest.create(req.body);
 
-        res.send({tutorialRequests});
+        res.send({tutorialRequests, Success: 'Tutorial created successfully.'});
 
     } catch (error) {
 
-        res.send({Error: 'Tutorial Request not created.'});
+        res.send({Error: 'Tutorial Request not created.', code: error.code});
     }
 });
 

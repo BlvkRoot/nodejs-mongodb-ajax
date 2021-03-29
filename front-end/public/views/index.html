@@ -37,8 +37,10 @@
     <div class="new-request">
       <div class="modal">
         <h2>Request a Tutorial</h2>
-        <form>
-          <input type="text" name="request" placeholder="Request...">
+        <form id="new-request-form">
+          <input type="text" name="request" id="request" placeholder="Request...">
+          <input type="hidden" name="vote" id="vote" value="0">
+          <input type="hidden" name="user" id="user_id" value="605da85a51091e2ce42e3a2e">
           <button>Submit Request</button>
           <p class="error"></p>
         </form>
@@ -68,6 +70,7 @@
     <script src="../js/jquery.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/user-auth.js"></script>
+    <script src="../js/tutorial-request.js"></script>
 
 
   </body>

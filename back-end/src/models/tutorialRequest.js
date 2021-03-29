@@ -11,7 +11,7 @@ const TutorialRequestSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
-    users: [{
+    user_id: [{
         type: Schema.Types.ObjectId, ref: 'User'
     }]
 });

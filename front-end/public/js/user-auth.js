@@ -3,9 +3,6 @@ $(function () {
   const authModals = document.querySelectorAll(".auth .modal");
   const authWrapper = document.querySelector(".auth");
   const signOut = document.querySelector(".sign-out");
-  const PORT = 8001 || 8000;
-  const apiBaseUrl = `http://localhost:${PORT}/`;
-  const errorDiv = $(".error");
   const registerForm = $("form#register");
   const loginForm = $("form#login");
   let userLogged = localStorage.getItem("isLoggedIn");
@@ -76,7 +73,9 @@ $(function () {
 
           if (response.Error) {
             errorDiv.addClass("show");
-            errorDiv.text(response.Error);
+            response.code === 11000
+            ? errorDiv.text('Email must be unique.')
+            : errorDiv.text(response.Error);
             toggleDisable(loginBtn);
             // Hide error Div after 10 secs
             hideErrorDiv();
@@ -101,19 +100,6 @@ $(function () {
       localStorage.setItem("isLoggedIn", false);
       window.location.reload(true);
     });
-  };
-
-  const hideErrorDiv = () => {
-    setTimeout(() => {
-      errorDiv.removeClass("show");
-      errorDiv.text("");
-    }, 10000);
-  };
-
-  const toggleDisable = (btn) => {
-    setTimeout(() => {
-      btn.disabled = false;
-    }, 1800);
   };
 
   console.log("User Logged In: ", userLogged);
