@@ -19,7 +19,14 @@ router.post('/create', async (req, res) => {
 });
 
 router.get('/show', async (req, res) => {
+    try {
+        const tutorialRequests = await TutorialRequest.find();
 
+        return res.send({tutorialRequests});
+    } catch (error) {
+        return res.send({Error: 'You dig...'});
+    }
+    
 });
 
 router.put('/update', async (req, res) => {
