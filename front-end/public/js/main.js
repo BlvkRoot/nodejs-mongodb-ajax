@@ -2,6 +2,7 @@
 const PORT = 8001 || 8000;
 const apiBaseUrl = `http://localhost:${PORT}/`;
 const errorDiv = $(".error");
+const user_id = document.querySelector('#user_id');
 
 const hideErrorDiv = () => {
   setTimeout(() => {

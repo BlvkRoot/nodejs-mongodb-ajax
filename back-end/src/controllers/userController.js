@@ -15,7 +15,9 @@ router.post("/create", async (req, res) => {
 
     const user = await User.create(req.body);
 
-    return res.send({ Success: "Registration Successful." });
+    user.password = null;
+
+    return res.send({ Success: "Registration Successful.", user });
   } catch (error) {
     return res.send({ Error: "User not registered, please try again" });
   }
@@ -25,7 +27,7 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({ email }).select("+password");
 
     console.log("====================================");
     console.log(user);
@@ -33,7 +35,8 @@ router.post("/login", async (req, res) => {
 
     if (user) {
       if (user.password === password) {
-        return res.send({ Success: "Login successful." });
+        user.password = null;
+        return res.send({ Success: "Login successful.", user });
       } else {
         return res.send({ Error: "Incorrect Password, please try again." });
       }

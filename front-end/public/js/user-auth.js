@@ -32,6 +32,7 @@ $(function () {
         dataType: "json",
         success: function (response) {
           console.log("success: ", response);
+          const { _id } = response.user !== undefined ? response.user : "";
 
           if (response.Error) {
             errorDiv.addClass("show");
@@ -40,10 +41,12 @@ $(function () {
             toggleDisable(registerBtn);
             // Hide error Div after 10 secs
             hideErrorDiv();
+
           } else {
             localStorage.setItem("isLoggedIn", true);
             errorDiv.removeClass("show");
-            window.location.reload(true);
+            user_id.value = _id;
+            // window.location.reload(true);
           }
         },
         error: function (response) {
@@ -71,6 +74,7 @@ $(function () {
         dataType: "json",
         success: function (response) {
           console.log("success: ", response);
+          const { _id } = response.user !== undefined ? response.user : "";
 
           if (response.Error) {
             errorDiv.addClass("show");
@@ -80,10 +84,12 @@ $(function () {
             toggleDisable(loginBtn);
             // Hide error Div after 10 secs
             hideErrorDiv();
+            user_id.value = "";
 
           } else {
             localStorage.setItem("isLoggedIn", true);
             errorDiv.removeClass("show");
+            user_id.value = _id;
             window.location.reload(true);
           }
 
@@ -99,6 +105,7 @@ $(function () {
   const logout = () => {
     signOut.addEventListener("click", () => {
       localStorage.setItem("isLoggedIn", false);
+      user_id.value = "";
       window.location.reload(true);
     });
   };
