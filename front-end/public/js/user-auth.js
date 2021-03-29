@@ -43,6 +43,7 @@ $(function () {
           } else {
             localStorage.setItem("isLoggedIn", true);
             errorDiv.removeClass("show");
+            window.location.reload(true);
           }
         },
         error: function (response) {

@@ -28,12 +28,13 @@ $(function () {
 
           hideErrorDiv();
           toggleDisable(submitBtn);
-          
+
         } else {
           hideErrorDiv();
           errorDiv.addClass("success");
           errorDiv.text(response.Success);
-          window.location.reload(true);
+          newRequestForm.reset();
+        //   window.location.reload(true);
         }
       },
       error: function (response) {
